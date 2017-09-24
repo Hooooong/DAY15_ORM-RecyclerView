@@ -2,6 +2,11 @@ Android Programing
 ----------------------------------------------------
 ### 2017.09.22 9일차
 
+#### 예제
+____________________________________________________
+
+- ORM 를 사용한 메모장 만들기 (준비중)
+
 #### 공부정리
 ____________________________________________________
 
@@ -15,7 +20,7 @@ ____________________________________________________
 
   - 객체형 데이터와 관계형 데이터의 각 속성들을 매핑할 경우 관계형 데이터를 객체형 데이터처럼 사용하는것이 가능하다.
 
-  - 주로 Annotaion 을 통해 ORM 을 사용한다.
+  - 주로 `Annotaion` 을 통해 ORM 을 사용한다.
 
   - Android 의 ORM 은 `aBatis`, `ORMLite`, `greenDAO` 등이 있는데, 보편적으로 많이 사용하는 `ORMLite` 를 사용하였다.
 
@@ -96,7 +101,7 @@ ____________________________________________________
 
   - CRUD 사용
 
-    -  기본적으로 `Dao<Model 객체명, ID 타입> dao = dbHelper.getDao(PicNote.class)` 를 선언하여 dao 객체를 통해 DB 관련 쿼리를 실행한다. 모든 쿼리는 `PicNote.class`에 기반하여 실행한다.
+    -  기본적으로 `Dao<Model 객체명, ID 타입> dao = dbHelper.getDao(PicNote.class)` 를 선언하여 dao 객체를 통해 DB 관련 쿼리를 실행한다. 모든 쿼리는 `PicNote.class`의 객체에 기반하여 실행한다.
 
     - `dao.create(picNote 객체)` : picNote 에 담겨있는 값들을 통해 `INSERT` 한다.
 
@@ -114,23 +119,23 @@ ____________________________________________________
 
 - RecyclerView 이란?
 
-  > Android Lollipop 버전에서 나온 RecyclerView 는 List View 의 장/단점을 적용한 위젯이다. ListView 를 사용하는 것처럼 Adapter를 통해 RecyclerView에 Item을 보여준다.
+  > Android Lollipop 버전에서 나온 RecyclerView 는 ListView 의 장/단점을 적용한 위젯이다. ListView 를 사용하는 것처럼 Adapter를 통해 RecyclerView에 Item을 보여준다.
 
-  - ListView 의 단점인 getView 메소드를 보완한 View 의 재사용과 Holder 패턴을 기본적으로 적용하였다. (참조 : [ListView](https://github.com/Hooooong/DAY12_ListView))
+  - ListView 의 단점인 getView 메소드를 보완한 View 의 재사용과 Holder 패턴을 기본적으로 적용하였다. (참조 : [ListView 설명](https://github.com/Hooooong/DAY12_ListView))
 
   - `LayoutManager` 을 통하여 Item 의 배치 방법을 다양하게 할 수 있다.
 
     1. `LinearLayoutManager`
 
-      - 리사이클러 뷰에서 가장 많이 쓰이는 레이아웃으로 수평, 수직 스크롤을 제공하는 리스트를 만들 수 있다.
+        - 리사이클러 뷰에서 가장 많이 쓰이는 레이아웃으로 수평, 수직 스크롤을 제공하는 리스트를 만들 수 있다.
 
     2. `StaggeredGridLayoutManagerm`
 
-      - 이 레이아웃을 통해 뷰마다 크기가 다른 레이아웃을 만들 수 있다.
+        - 이 레이아웃을 통해 뷰마다 크기가 다른 레이아웃을 만들 수 있다.
 
     3. `GridLayoutManager`
 
-      - 갤러리(GridView) 같은 격자형 리스트를 만들 수 있다.
+        - 갤러리(GridView) 같은 격자형 리스트를 만들 수 있다.
 
 - ListView vs RecyclerView
 
@@ -141,3 +146,5 @@ ____________________________________________________
     - RecyclerView 는 ListView 에 비해 애니메이션을 좀 더 유연하게 적용시킬 수 있다.
 
     - ListView 는 Footer 와 Header 를 기본적으로 제공하지만, RecyclerView 는 직접 만들어야 하는 단점이 있다.
+
+- 참조 : [RecyclerView](https://developer.android.com/training/material/lists-cards.html?hl=ko)
