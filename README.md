@@ -174,12 +174,12 @@ ____________________________________________________
           }
 
           @Override
-          public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
+          public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             // ViewHolder 를 생성한다.
           }
 
           @Override
-          public void onBindViewHolder(Holder holder, int position) {
+          public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             // ViewHolder를 재사용한다.
 
           }
