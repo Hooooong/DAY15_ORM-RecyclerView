@@ -119,9 +119,9 @@ ____________________________________________________
 
 - RecyclerView 이란?
 
-  > Android Lollipop 버전에서 나온 RecyclerView 는 ListView 의 장/단점을 적용한 위젯이다. ListView 를 사용하는 것처럼 Adapter를 통해 RecyclerView에 Item을 보여준다.
+  > Android Lollipop 버전에서 나온 RecyclerView 는 ListView 의 장/단점을 적용한 위젯이다. ListView 를 사용하는 것처럼 Adapter를 통해 RecyclerView에 Item을 보여준다. 다만, ListView 의 Adapter 는 BaseAdapter 를 상속받아 구현하지만 RecyclerView 는 RecyclerView.Adapter 를 상속받아 구현하는 점이 다르다.
 
-  - ListView 의 단점인 getView 메소드를 보완한 View 의 재사용과 Holder 패턴을 기본적으로 적용하였다. (참조 : [ListView 설명](https://github.com/Hooooong/DAY12_ListView))
+  - ListView 의 단점인 getView 메소드를 보완한 View 의 재사용과 Holder 패턴을 기본적으로 적용하였다.
 
   - `LayoutManager` 을 통하여 Item 의 배치 방법을 다양하게 할 수 있다.
 
@@ -139,7 +139,52 @@ ____________________________________________________
 
 - ListView vs RecyclerView
 
-    - ListView 와 RecyclerView 의 가장 큰 차이점은 `View 재사용`,  `ViewHolder 패턴` 적용이다.
+    - ListView 와 RecyclerView 의 가장 큰 차이점은 Adapter에서 `View 재사용`,  `ViewHolder 패턴` 적용이다. Adpater 의 메소드 이름부터 ViewHolder 를 사용하라고 권유하고 있다.
+
+        - ListView 의 Adapter
+
+        ```java
+        // ListView 는 기본적으로 BaseAdapter 를 상속받아 구현한다.
+        public CustomAdapter extends BaseAdapter{
+          @Override
+          public int getCount() {
+          }
+
+          @Override
+          public Object getItem(int position) {
+          }
+
+          @Override
+          public long getItemId(int position) {
+          }
+
+          @Override
+          public View getView(int position, View convertView, ViewGroup parent) {
+
+          }          
+        }
+        ```
+
+        - RecyclerView 의 Adpater
+
+        ```java
+        public CustomAdapter extends RecyclerView.Adapter{
+          @Override
+          public int getItemCount() {
+          }
+
+          @Override
+          public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
+            // ViewHolder 를 생성한다.
+          }
+
+          @Override
+          public void onBindViewHolder(Holder holder, int position) {
+            // ViewHolder를 재사용한다.
+
+          }
+        }
+        ```
 
     - `LayoutManager` 를 통해 ListView 보다 더 유연하게 RecyclerView 를 만들 수 있다.
 
@@ -147,4 +192,4 @@ ____________________________________________________
 
     - ListView 는 Footer 와 Header 를 기본적으로 제공하지만, RecyclerView 는 직접 만들어야 하는 단점이 있다.
 
-- 참조 : [RecyclerView](https://developer.android.com/training/material/lists-cards.html?hl=ko)
+- 참조 : [ListView 설명](https://github.com/Hooooong/DAY12_ListView),  [RecyclerView](https://developer.android.com/training/material/lists-cards.html?hl=ko)
