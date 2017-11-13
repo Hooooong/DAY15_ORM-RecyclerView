@@ -192,4 +192,49 @@ ____________________________________________________
 
     - ListView 는 Footer 와 Header 를 기본적으로 제공하지만, RecyclerView 는 직접 만들어야 하는 단점이 있다.
 
+- Recyclerview Header 만들기
+
+  -  RecyclerView 의 `getItemViewType` 을 설정하여 `onCreateViewHolder`의 viewType 값을 받아 ViewHolder를 다양하게 변경할 수 있다.
+
+  ```java
+  @Override
+  public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+      if (viewType == TYPE_ITEM) {
+          // 일반 Item 일 경우
+          View view = LayoutInflater.from(parent.getContext()).inflate(Item 에 맞는 layout 설정 , parent, false);
+          //inflate your layout and pass it to view holder
+          return new VHItem(view);
+      } else if (viewType == TYPE_HEADER) {
+          // header 일 경우
+          View view = LayoutInflater.from(parent.getContext()).inflate(Header 에 맞는 layout 설정 , parent, false);
+          return new VHHeader(view);
+      }
+      // viewType 이 없는 것은 Exception 을 발생한다.
+      throw new RuntimeException("there is no type that matches the type " + viewType + " + make sure your using types correctly");
+  }
+
+  @Override
+  public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+      if (viewHolder instanceof VHItem) {
+          // viewHolder 가 일반 item 일 경우
+      } else if (viewHolder instanceof VHHeader) {
+          // viewHolder 가 header 일 경우
+      }
+  }
+
+  @Override
+  public int getItemViewType(int position) {
+      if (position == 0)
+          // position 이 0(header)이면 Type 값을 변경해준다.
+          return TYPE_HEADER;
+      return TYPE_ITEM;
+  }
+
+  @Override
+  public int getItemCount() {
+      // header 를 추가하기 때문에 전체 데이터의 크기 + 1 을 한다.
+      return postList.size()+1;
+  }
+  ```
+
 - 참조 : [ListView 설명](https://github.com/Hooooong/DAY12_ListView),  [RecyclerView](https://developer.android.com/training/material/lists-cards.html?hl=ko)
